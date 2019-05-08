@@ -42,6 +42,37 @@ namespace kredek4.Controllers
             return View(allCars);
         }
 
+        /// <summary>
+        /// Wyswietlanie listy modeli samochodow
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetListOfModels()
+        {
+            List<string> allModels = new List<string>();
+
+            //Petla dodajaca model samochdou do listy
+            foreach(CarViewModel car in allCars)
+            {
+                allModels.Add(car.Model);
+            }
+
+            return View(allModels);
+        }
+        /// <summary>
+        /// Pobieranie samochodu po jego modelu
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetCarByModel(string model)
+        {
+            // Wyszukanie samochodu w liscie
+            CarViewModel car = allCars.Where(a => a.Model.ToLower() == model.ToLower()).FirstOrDefault();
+
+            //przekazanie obiektu do widoku
+            return View(car);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
