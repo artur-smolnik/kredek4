@@ -74,6 +74,29 @@ namespace kredek4.Controllers
             return View(car);
         }
 
+        /// <summary>
+        /// Wyswietlenie formularza kontaktowego do wypelnienia
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult ContactForm()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Wyswietlenie powietania po wyswietleniu formularza kontaktowego
+        /// </summary>
+        /// <param name="userData"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult ContactForm(ContactFormViewModel userData)
+        {
+            string fullName = userData.FirstName + " " + userData.LastName;
+            ViewBag.UserName = fullName;
+            return View("ContactFormGreetings");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
