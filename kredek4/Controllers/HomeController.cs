@@ -73,8 +73,10 @@ namespace kredek4.Controllers
             //przekazanie obiektu do widoku
             return View(car);
         }
-
-        /// <summary>
+        [HttpGet]
+        public IActionResult ContactForm1()
+        { return View(); }
+        /// <summary>;
         /// Wyswietlenie formularza kontaktowego do wypelnienia
         /// </summary>
         /// <returns></returns>
